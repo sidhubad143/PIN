@@ -1,9 +1,13 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from config import OWNER_ID, BOT_TOKEN
+from config import OWNER_ID, BOT_TOKEN, API_ID, API_HASH   # <-- eh vi import kar layi
 
-app = Client("pin_bot", bot_token=BOT_TOKEN)
-
+app = Client(
+    "pin_bot",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN
+)
 # Automatic unpin jab koi hor pin kare
 @app.on_message(filters.service & filters.pinned_message)
 async def auto_unpin_by_non_owner(client: Client, message: Message):
